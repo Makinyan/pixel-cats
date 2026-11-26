@@ -140,3 +140,73 @@ setInterval(()=>{
   step=!step;
   drawPixels(walker,step?stride:sprites.walk);
 },260);
+
+const catButton=document.getElementById('cat-button');
+let cancelVisit;
+async function visitCat(){
+  if(cancelVisit)return;
+  const box=catButton.getBoundingClientRect();
+  const visitor=document.createElement('div');
+  visitor.className='visit';
+  visitor.setAttribute('aria-hidden','true');
+  Object.assign(visitor.style,{left:box.left+'px',top:box.top+'px',width:box.width+'px',height:box.height+'px'});
+  const sprite=document.createElement('canvas');
+  const heart=document.createElement('span');
+  heart.className='pixel-heart';
+  heart.hidden=true;
+  visitor.append(sprite,heart);
+  document.body.append(visitor);
+  catButton.classList.add('visiting');
+  let animation;
+  let timer;
+  let release;
+  let stopped=false;
+  function cancel(){
+    stopped=true;
+    animation?.cancel();
+    clearTimeout(timer);
+    if(release)release();
+  }
+  cancelVisit=cancel;
+  const wait=ms=>new Promise(resolve=>{release=resolve;timer=setTimeout(resolve,ms)});
+  const dx=innerWidth*.5-box.left-box.width/2;
+  const dy=innerHeight*.58-box.bottom;
+  const near='translate('+dx+'px,'+dy+'px) scale(1.85)';
+  const home='translate(0,0) scale(1)';
+  const middle='translate('+dx*.5+'px,'+(dy*.5-12)+'px) scale(1.4)';
+  function run(frames){
+    animation=visitor.animate(frames.map(transform=>({transform})),{duration:580,easing:'ease-in-out',fill:'forwards'});
+    return animation.finished;
+  }
+  const interruptEvents=['scroll','resize','pagehide'];
+  interruptEvents.forEach(type=>window.addEventListener(type,cancel,{passive:true}));
+  motion.addEventListener('click',cancel);
+  try{
+    const moving=!root.classList.contains('still');
+    if(moving){
+      drawPixels(sprite,sprites.walk);
+      sprite.style.transform=dx<0?'scaleX(-1)':'';
+      await run([home,middle,near]);
+    }
+    if(stopped)return;
+    sprite.style.transform='';
+    sitting(sprite,0);
+    heart.hidden=false;
+    await wait(950);
+    if(stopped)return;
+    if(moving){
+      heart.hidden=true;
+      drawPixels(sprite,stride);
+      sprite.style.transform=dx<0?'':'scaleX(-1)';
+      await run([near,middle,home]);
+    }
+  }catch(error){if(!stopped)throw error}
+  finally{
+    interruptEvents.forEach(type=>window.removeEventListener(type,cancel));
+    motion.removeEventListener('click',cancel);
+    visitor.remove();
+    catButton.classList.remove('visiting');
+    cancelVisit=undefined;
+  }
+}
+catButton.addEventListener('click',visitCat);

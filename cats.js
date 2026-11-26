@@ -107,9 +107,10 @@ function drawPixels(canvas, rows) {
     if(colours[cell]){ctx.fillStyle=colours[cell];ctx.fillRect(x,y,1,1);}
   }));
 }
+const sittingCoats = {sit:0, tux:1, calico:2, mist:3, snow:4};
 document.querySelectorAll('[data-sprite]').forEach(canvas=>{
   const kind=canvas.dataset.sprite;
-  if(kind==='sit'||kind==='tux') sitting(canvas,kind==='sit'?0:1);
+  if(Object.hasOwn(sittingCoats,kind)) sitting(canvas,sittingCoats[kind]);
   else drawPixels(canvas,sprites[kind]);
 });
 const motion=document.getElementById('motion');

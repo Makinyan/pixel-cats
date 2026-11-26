@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f3ec">
+<title>Котопиксели — галерея пиксельных котов</title>
+<style>
+  :root { color-scheme: light; --paper: #f7f3ec; --ink: #25203b; --muted: #60586e; --line: #dcd4e0; --accent: #572c92; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.5 system-ui, sans-serif; }
+  .wrap { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+  header { padding: 24px 0; border-bottom: 1px solid var(--line); }
+  header .wrap, footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 850; letter-spacing: -.03em; }
+  .brand svg { width: 29px; height: 29px; flex: none; }
+  a { color: var(--accent); text-underline-offset: .23em; }
+  .intro { padding: 68px 0 42px; }
+  h1, h2, p { margin: 0; }
+  .intro h1 { font-size: clamp(2.65rem, 8vw, 6.5rem); line-height: 1; letter-spacing: -.075em; }
+  .intro p { margin-top: 18px; color: var(--muted); font-size: clamp(1rem, 2vw, 1.25rem); }
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 23px; padding-bottom: 64px; }
+  .card { display: block; width: 100%; text-align: left; padding: 0; border: 1px solid var(--line); border-radius: 15px; overflow: hidden; background: #fffcf8; color: inherit; font: inherit; cursor: pointer; box-shadow: 0 2px 0 #25203b0e; transition: transform .18s, box-shadow .18s, border-color .18s; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 8px 18px #25203b22; border-color: #a18ab7; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+  canvas { display: block; width: 100%; height: auto; aspect-ratio: 96 / 62; image-rendering: pixelated; }
+  .words { display: block; padding: 15px 18px 18px; }
+  .name { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 1.23rem; font-weight: 830; letter-spacing: -.025em; }
+  .open { color: var(--accent); font-size: 1.1rem; }
+  .caption { display: block; margin-top: 3px; color: var(--muted); font-size: .91rem; }
+  footer { border-top: 1px solid var(--line); color: var(--muted); padding: 21px 0; font-size: .9rem; }
+  dialog { width: min(720px, calc(100% - 32px)); max-height: calc(100dvh - 32px); padding: 0; overflow: auto; border: 1px solid var(--line); border-radius: 16px; background: #fffcf8; color: var(--ink); }
+  dialog::backdrop { background: #211831ca; }
+  .dialog-top, .dialog-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 18px; }
+  .dialog-top h2 { font-size: 1.3rem; }
+  .dialog-bottom p { color: var(--muted); }
+  .dialog-controls { display: flex; gap: 7px; flex-shrink: 0; }
+  .control { min-width: 40px; min-height: 40px; padding: 4px 9px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); cursor: pointer; font: 700 1.2rem/1 system-ui, sans-serif; }
+  .control:hover { background: #eee2f6; }
+  @media (max-width: 850px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 520px) { .wrap { width: calc(100% - 32px); } .intro { padding: 46px 0 27px; } .grid { grid-template-columns: 1fr; gap: 16px; padding-bottom: 40px; } }
+  @media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+</style>
+</head>
+<body id="top">
+<header><div class="wrap">
+  <div class="brand"><svg viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges"><path fill="#572c92" d="M1 2h3v2h2v2h4V4h2V2h3v10h-2v2H3v-2H1z"/><path fill="#fff0fa" d="M4 8h2v2H4zm6 0h2v2h-2zm-3 3h2v1H7z"/></svg>Котопиксели</div>
+  <a href="#gallery">Галерея</a>
+</div></header>
+<main class="wrap">
+  <section class="intro" aria-labelledby="heading"><h1 id="heading">Котопиксели</h1><p>Шесть котов в шести маленьких мирах.</p></section>
+  <section class="grid" id="gallery" aria-label="Галерея пиксельных котов"></section>
+  <noscript><p>Для просмотра иллюстраций включите JavaScript.</p></noscript>
+</main>
+<footer><div class="wrap"><span>Котопиксели</span><a href="#top">Наверх ↑</a></div></footer>
+<dialog aria-labelledby="dialog-title" aria-describedby="dialog-caption">
+  <div class="dialog-top"><h2 id="dialog-title"></h2><button class="control" id="close" type="button" aria-label="Закрыть" autofocus>×</button></div>
+  <canvas id="preview" width="96" height="62" role="img"></canvas>
+  <div class="dialog-bottom"><p id="dialog-caption"></p><div class="dialog-controls">
+    <button class="control" id="previous" type="button" aria-label="Предыдущий кот">←</button>
+    <button class="control" id="next" type="button" aria-label="Следующий кот">→</button>
+  </div></div>
+</dialog>
+<script>
+const cats = [
+  {name:'Персик', caption:'Утро на кухне', alt:'Рыжий полосатый кот на кухне рядом с чашкой, в окно светит солнце.', world:'kitchen', fur:'#ef9850', shade:'#bb563a', light:'#ffd78e', nose:'#a73960', eye:'#3d2944'},
+  {name:'Полночь', caption:'Луна над крышами', alt:'Чёрный кот на черепичной крыше под большой луной.', world:'roof', fur:'#393755', shade:'#24213e', light:'#6a678d', nose:'#dc84ae', eye:'#fbe79a'},
+  {name:'Плюшка', caption:'Полевые цветы', alt:'Трёхцветная кошка среди полевых цветов на фоне зелёных холмов.', world:'field', fur:'#fff0d8', shade:'#d3aab0', light:'#fffcf1', nose:'#c46c86', eye:'#304936'},
+  {name:'Туман', caption:'Дождь за окном', alt:'Серый полосатый кот на подоконнике за дождевыми струями и рядом с растением.', world:'rain', fur:'#a0a2bd', shade:'#676985', light:'#d2d5e0', nose:'#a45b81', eye:'#392b4c'},
+  {name:'Снежок', caption:'Зимний лес', alt:'Белый пушистый кот в синем шарфе сидит на снегу среди елей.', world:'snow', fur:'#fbf6f8', shade:'#bac6e4', light:'#ffffff', nose:'#bc739a', eye:'#35395d'},
+  {name:'Тоффи', caption:'Закат у моря', alt:'Кремовый кот с тёмными ушами смотрит на берег моря на закате.', world:'beach', fur:'#e9bc93', shade:'#84546a', light:'#ffdfad', nose:'#954d71', eye:'#38294b'}
+];
+
+function scene(canvas, cat) {
+  const context = canvas.getContext('2d');
+  const rect = (x,y,w,h,color) => { context.fillStyle = color; context.fillRect(x,y,w,h); };
+  const poly = (points,color) => {
+    context.fillStyle = color;
+    context.beginPath();
+    points.forEach(([x,y], i) => i ? context.lineTo(x,y) : context.moveTo(x,y));
+    context.closePath();
+    context.fill();
+  };
+  const disk = (x,y,r,color) => {
+    for (let dy = -r; dy <= r; dy++) {
+      const span = Math.floor(Math.sqrt(r*r-dy*dy));
+      rect(x-span,y+dy,span*2+1,1,color);
+    }
+  };
+  const cloud = (x,y,color) => {
+    rect(x+4,y,10,2,color); rect(x+2,y+2,16,2,color); rect(x,y+4,22,2,color);
+  };
+  const fir = (x,y,size,color) => {
+    for (let i=0;i<3;i++) {
+      const half = size - 4 + i*2;
+      for (let row=0;row<half;row++) rect(x-row,y+i*4+row,2*row+1,1,color);
+    }
+  };
+  const star = (x,y,color) => { rect(x,y-2,1,5,color); rect(x-2,y,5,1,color); };
+  const flower = (x,y,color) => {
+    rect(x,y,1,5,'#407f62'); rect(x+1,y+2,2,1,'#407f62');
+    rect(x-2,y-2,5,2,color); rect(x-1,y-3,3,4,color); rect(x,y-2,1,2,'#fff2a6');
+  };
+  const bands = (colors, start, height) => colors.forEach((color,i)=>rect(0,start+i*height,96,height,color));
+  let shadow;
+  switch (cat.world) {
+    case 'kitchen':
+      rect(0,0,96,62,'#f8cdb4'); rect(0,0,96,5,'#f3baa3');
+      rect(7,6,28,33,'#b86975'); rect(9,8,24,28,'#97d2db'); disk(17,16,5,'#fff0ac');
+      cloud(10,21,'#f0f8e8'); rect(21,8,2,28,'#fff0d2'); rect(9,21,24,2,'#fff0d2');
+      rect(5,38,32,3,'#fff0d2'); rect(60,11,27,2,'#e89488'); rect(63,13,2,11,'#e89488'); rect(82,13,2,11,'#e89488');
+      rect(65,5,6,6,'#c06f82'); rect(73,7,4,4,'#8daf8d');
+      rect(0,49,96,13,'#e79a71'); rect(0,49,96,2,'#a75761'); rect(0,56,96,1,'#f6b489');
+      rect(71,40,9,10,'#a75770'); rect(72,41,7,7,'#ffe8c9'); rect(80,42,3,5,'#a75770'); rect(81,43,1,3,'#f8cdb4');
+      rect(75,36,1,3,'#fff0d2'); rect(77,33,1,3,'#fff0d2'); shadow='#c27667';
+      break;
+    case 'roof':
+      bands(['#262345','#322952','#45305d','#59416d','#704d7c'],0,13);
+      disk(72,17,11,'#fbe0ae'); disk(76,14,9,'#322952'); rect(72,9,5,3,'#322952');
+      [[12,11],[30,17],[41,7],[86,29],[17,26]].forEach(([x,y])=>star(x,y,'#e0a9ce'));
+      for(let x=0;x<96;x+=8) {
+        const y=33+(x*7%13);
+        rect(x,y,7,18,'#332845'); rect(x+2,y+3,2,3,'#c687a3');
+      }
+      poly([[0,51],[39,47],[96,44],[96,62],[0,62]],'#56394f');
+      for(let y=51;y<62;y+=4) for(let x=(y%3)*3;x<96;x+=9) rect(x,y,7,1,'#8a5775');
+      shadow='#372740';
+      break;
+    case 'field':
+      bands(['#b9ded0','#cce6cb','#deebc4','#c6dd96'],0,16);
+      cloud(4,8,'#edf1d9'); cloud(64,15,'#edf1d9'); disk(78,10,6,'#faefad');
+      poly([[0,36],[15,26],[32,31],[54,37],[77,24],[96,30],[96,58],[0,58]],'#8bb78f');
+      poly([[0,42],[24,41],[42,34],[68,40],[96,34],[96,62],[0,62]],'#a4c77e');
+      rect(0,53,96,9,'#93bb70');
+      [[8,50],[18,55],[26,44],[68,49],[80,55],[90,45],[4,58]].forEach(([x,y],i)=>flower(x,y,['#f6c5c3','#fbea96','#e9d6f0'][i%3]));
+      shadow='#75a46c';
+      break;
+    case 'rain':
+      rect(0,0,96,62,'#a9abc9'); rect(9,4,78,42,'#666a96'); rect(12,6,72,38,'#7c86aa');
+      for(let x=12;x<84;x+=7) rect(x,28+(x%6),6,21,'#687595');
+      for(let x=13;x<80;x+=6) for(let y=8+(x%6);y<45;y+=12) {
+        for(let step=0;step<4;step++) rect(x-step,y+step,1,1,'#b7c3da');
+      }
+      rect(46,5,3,40,'#cccbe0'); rect(12,24,72,2,'#cccbe0');
+      rect(0,48,96,14,'#a38dab'); rect(0,48,96,3,'#e6c8d5'); rect(0,56,96,1,'#b9a1bb');
+      rect(72,37,9,11,'#d691a5'); rect(71,36,11,2,'#f0b0b8'); rect(77,28,1,8,'#436e65');
+      rect(73,29,5,3,'#587e6d'); rect(78,25,5,4,'#739682'); shadow='#766b8f';
+      break;
+    case 'snow':
+      bands(['#889bc8','#a6b6d7','#bccae2','#dce7f0'],0,16);
+      disk(75,13,8,'#f7e5e7');
+      [[9,38,12],[20,36,9],[82,37,12],[93,42,10]].forEach(([x,y,s])=>{fir(x,y-17,s,'#6785a9'); fir(x,y-15,s-3,'#b5cbe0');});
+      poly([[0,48],[24,45],[57,50],[96,44],[96,62],[0,62]],'#ecf0f7');
+      [[5,9],[24,19],[37,10],[57,14],[64,27],[90,13],[13,22],[85,33],[32,30]].forEach(([x,y])=>rect(x,y,1,1,'#fff9f9'));
+      rect(12,54,12,1,'#d2ddef'); rect(70,55,9,1,'#d2ddef'); shadow='#b1c3df';
+      break;
+    case 'beach':
+      bands(['#ae7ba1','#d58c9e','#f3a799','#f7bf99'],0,9);
+      disk(72,26,11,'#ffdfa2'); rect(0,35,96,13,'#987ca3');
+      rect(0,41,96,7,'#b38ba4'); rect(0,47,96,15,'#e7af99');
+      [[6,37,15],[26,40,13],[62,37,22],[71,40,12],[60,43,16],[4,45,18],[83,44,11]].forEach(([x,y,w])=>rect(x,y,w,1,'#f5c5b4'));
+      rect(8,54,12,1,'#f5d2ac'); rect(73,51,9,1,'#f5d2ac');
+      rect(77,55,4,2,'#bd7787'); rect(78,54,2,1,'#ffdeae'); shadow='#b77f87';
+  }
+  const outline = '#352943';
+  // A few offset rows create stepped silhouettes at the native pixel resolution.
+  const stepped = (x,y,w,h,color) => {
+    rect(x+2,y,w-4,1,color); rect(x+1,y+1,w-2,1,color);
+    rect(x,y+2,w,h-4,color); rect(x+1,y+h-2,w-2,1,color); rect(x+2,y+h-1,w-4,1,color);
+  };
+  stepped(28,50,41,6,shadow);
+  const mirror = cat.world==='rain' || cat.world==='beach';
+  const pixel = (x,y,w,h,color) => rect(mirror ? 96-x-w : x,y,w,h,color);
+  const shape = (x,y,w,h,color) => stepped(mirror ? 96-x-w : x,y,w,h,color);
+  const fluffy = cat.world==='snow';
+  const tall = cat.world==='roof';
+  const bodyTop = tall ? 32 : 35;
+  const earTop = tall ? 18 : 21;
+
+  shape(45,bodyTop,fluffy ? 17 : 15,53-bodyTop,outline);
+  shape(47,bodyTop+2,fluffy ? 13 : 11,51-bodyTop,cat.fur);
+  pixel(60,46,6,7,outline); pixel(65,42,5,9,outline); pixel(66,40,4,4,outline);
+  pixel(60,48,5,3,cat.shade); pixel(64,46,4,3,cat.fur); pixel(67,42,1,5,cat.shade);
+  shape(36,45,13,9,outline); shape(38,46,9,6,cat.fur);
+  shape(49,47,10,7,outline); shape(50,48,8,4,cat.shade);
+  pixel(34,earTop,4,12,outline); pixel(38,earTop+3,3,9,outline);
+  pixel(53,earTop+3,3,9,outline); pixel(56,earTop,4,12,outline);
+  shape(33,earTop+8,28,20,outline);
+  shape(35,earTop+10,24,16,cat.fur);
+  pixel(36,earTop+2,2,11,cat.world==='beach' ? cat.shade : cat.fur);
+  pixel(38,earTop+5,2,6,cat.fur);
+  pixel(56,earTop+2,2,11,cat.world==='beach' ? cat.shade : cat.fur);
+  pixel(54,earTop+5,2,6,cat.fur);
+  pixel(36,earTop+5,1,4,cat.nose); pixel(57,earTop+5,1,4,cat.nose);
+  if(cat.world==='kitchen' || cat.world==='rain'){
+    for(let i=0;i<3;i++) pixel(42+i*4,earTop+10,2,i===1 ? 4 : 3,cat.shade);
+    pixel(35,earTop+16,3,1,cat.shade); pixel(56,earTop+16,3,1,cat.shade);
+  }
+  if(cat.world==='field'){
+    shape(36,earTop+10,9,11,'#c97753'); shape(51,earTop+10,8,11,'#625064');
+    pixel(50,45,6,2,'#c97753'); pixel(54,47,3,2,'#625064');
+  }
+  if(cat.world==='beach'){
+    shape(44,earTop+15,7,8,cat.shade); pixel(36,earTop+11,3,2,cat.shade); pixel(55,earTop+11,3,2,cat.shade);
+  }
+  pixel(40,earTop+17,3,4,cat.eye); pixel(52,earTop+17,3,4,cat.eye);
+  pixel(40,earTop+17,1,1,cat.light); pixel(52,earTop+17,1,1,cat.light);
+  if(cat.world!=='beach') shape(43,earTop+20,9,6,cat.light);
+  pixel(46,earTop+21,3,2,cat.nose); pixel(47,earTop+23,1,1,outline);
+  pixel(37,earTop+22,4,1,cat.light); pixel(54,earTop+22,4,1,cat.light);
+  pixel(40,51,1,1,cat.shade); pixel(44,51,1,1,cat.shade);
+  if(fluffy){
+    pixel(39,47,18,2,'#5777ab'); pixel(41,49,15,2,'#7598c7'); pixel(52,50,4,5,'#5777ab');
+  }
+}
+
+const gallery = document.querySelector('#gallery');
+const dialog = document.querySelector('dialog');
+const preview = document.querySelector('#preview');
+let current = 0;
+let opener;
+function show(index) {
+  current = (index + cats.length) % cats.length;
+  const cat = cats[current];
+  document.querySelector('#dialog-title').textContent = cat.name;
+  document.querySelector('#dialog-caption').textContent = cat.caption;
+  preview.setAttribute('aria-label', cat.alt);
+  scene(preview,cat);
+}
+cats.forEach((cat,index)=>{
+  const card = document.createElement('button');
+  card.type = 'button';
+  card.className = 'card';
+  card.setAttribute('aria-haspopup','dialog');
+  card.innerHTML = '<canvas width="96" height="62" aria-hidden="true"></canvas><span class="words"><span class="name"><span></span><span class="open" aria-hidden="true">↗</span></span><span class="caption"></span></span>';
+  card.querySelector('.name span').textContent = cat.name;
+  card.querySelector('.caption').textContent = cat.caption;
+  scene(card.querySelector('canvas'),cat);
+  card.addEventListener('click',()=>{
+    opener = card;
+    show(index);
+    dialog.showModal();
+  });
+  gallery.append(card);
+});
+document.querySelector('#close').addEventListener('click',()=>dialog.close());
+document.querySelector('#previous').addEventListener('click',()=>show(current-1));
+document.querySelector('#next').addEventListener('click',()=>show(current+1));
+dialog.addEventListener('close',()=>opener?.focus());
+dialog.addEventListener('keydown',(event)=>{
+  if(event.key==='ArrowLeft' || event.key==='ArrowRight'){
+    event.preventDefault();
+    show(current+(event.key==='ArrowRight' ? 1 : -1));
+  }
+});
+</script>
+</body>
+</html>

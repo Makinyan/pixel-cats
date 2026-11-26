@@ -1,203 +1,39 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#202b26">
-<meta name="description" content="Портфолио Олеси Потаповой, студентки НГИЭУ. Анализ данных, машинное обучение и прикладная разработка.">
-<title>Олеся Потапова — данные и искусственный интеллект</title>
-<style>
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:#f7f6ef;color:#202b26;font:17px/1.55 "Segoe UI",Arial,sans-serif}.wrap{width:min(1110px,calc(100% - 48px));margin:auto}
-header{background:#202b26;color:white}.bar,nav,.actions{display:flex;align-items:center;gap:24px}.bar{min-height:64px;justify-content:space-between}.brand{font-weight:700;letter-spacing:.03em}a{color:inherit;text-underline-offset:.22em}nav a,.brand,.actions a,.path{text-decoration:none}nav a:hover,.brand:hover{text-decoration:underline}.hero{display:grid;grid-template-columns:1.25fr .85fr;gap:6%;align-items:center;padding:64px 0}.kicker,.status,.micro{font:700 .77rem/1.4 Consolas,monospace;letter-spacing:.075em;text-transform:uppercase;color:#3d6453}h1,h2,h3,p{margin:0}h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:normal;letter-spacing:-.05em;line-height:1.04}h1{font-size:clamp(52px,6vw,88px);margin:14px 0 18px}h2{font-size:clamp(35px,4vw,54px);margin-bottom:22px}.lead{max-width:58ch}.actions{margin-top:24px;gap:18px;flex-wrap:wrap}.actions a:first-child{background:#263c31;color:#fff;padding:11px 19px;border-radius:5px}.actions a:last-child{text-decoration:underline}figure{margin:0}canvas{display:block;width:100%;height:auto;image-rendering:pixelated}.hero figure{background:#e5e0ee;border:1px solid #25382e;box-shadow:6px 6px 0 #bcc6af}.hero figcaption{padding:10px 14px;color:#292538;font-family:Consolas,monospace;font-size:.85rem}
-section.content{border-top:1px solid #aeb9a8;padding:42px 0 50px}.paths{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.path{display:grid;grid-template-columns:84px 1fr;align-items:center;gap:14px;background:#fffef8;border:1px solid #bcc5b6;border-radius:6px;padding:12px;color:#253b2e;transition:background .18s}.path:hover,.path.active{background:#dcebcf;border-color:#445e47}.path small{display:block;font-size:14px;color:#4b5950}.path strong{display:block;line-height:1.25}.path canvas{border-radius:3px}.projects{margin-top:26px;border-top:1px solid #bcc5b6}.work{display:grid;grid-template-columns:210px 1fr;gap:25px;padding:26px 16px;border-bottom:1px solid #bcc5b6;scroll-margin-top:16px}.work:target{background:#e8efdF;box-shadow:inset 4px 0 #41694e}.work h3{font-size:1.3rem;line-height:1.25;margin-bottom:8px}.work p{max-width:68ch}.work a{display:inline-block;margin-top:9px;font-weight:600}.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:24px 44px}.skills h3{font-size:1rem;margin-bottom:4px}.about{max-width:73ch}.about p+p{margin-top:12px}footer{padding:22px 0;background:#202b26;color:white}footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}:focus-visible{outline:3px solid #bf5327;outline-offset:4px}
-@media(max-width:850px){.path{grid-template-columns:1fr}.path canvas{width:90px}.hero{gap:24px}}@media(max-width:630px){.wrap{width:calc(100% - 32px)}.bar{align-items:flex-start;flex-direction:column;gap:6px;padding:12px 0}nav{gap:16px;font-size:15px}.hero{grid-template-columns:1fr;padding:34px 0;gap:24px}.hero figure{max-width:380px}.paths,.skills,.work{grid-template-columns:1fr}.path{grid-template-columns:76px 1fr}.path canvas{width:76px}.work{gap:8px;padding:20px 12px}.paths{gap:8px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-</style>
-</head>
-<body>
-<header><div class="wrap bar"><a class="brand" href="#top">Олеся Потапова</a><nav aria-label="Разделы сайта"><a href="#projects">Проекты</a><a href="#skills">Навыки</a><a href="#about">Обо мне</a></nav></div></header>
-<main class="wrap" id="top">
-<section class="hero"><div><p class="kicker">НГИЭУ · Системы искусственного интеллекта</p><h1>Олеся Потапова</h1><p class="lead">Я студентка НГИЭУ. Анализирую данные, обучаю модели машинного обучения и разрабатываю приложения. Хочу участвовать в проектах, которые помогают людям и улучшают качество жизни.</p><div class="actions"><a href="#projects">Посмотреть работы</a><a href="https://github.com/Makinyan">Мой GitHub ↗</a></div></div><figure><canvas data-cat="1" width="96" height="62" role="img" aria-label="Пиксельный чёрный кот сидит на крыше под луной"></canvas><figcaption>Полночь на крыше</figcaption></figure></section>
-<section class="content" id="projects"><h2>Проекты</h2><div class="paths" aria-label="Перейти к проекту по направлению">
-<a class="path" href="#models"><canvas data-cat="0" width="96" height="62" aria-hidden="true"></canvas><span><strong>Машинное обучение</strong><small>Персик · дерево решений</small></span></a>
-<a class="path" href="#studio"><canvas data-cat="3" width="96" height="62" aria-hidden="true"></canvas><span><strong>Разработка</strong><small>Туман · студия 3D-печати</small></span></a>
-<a class="path" href="#games"><canvas data-cat="2" width="96" height="62" aria-hidden="true"></canvas><span><strong>Анализ данных</strong><small>Плюшка · настольные игры</small></span></a></div>
-<div class="projects">
-<article class="work" id="models" tabindex="-1"><p class="status">Реализовано</p><div><h3>Дерево решений C4.5</h3><p>Разобрала метод C4.5, реализовала алгоритм построения дерева решений и оформила его в виде приложения.</p><a href="https://github.com/Makinyan/decision-tree-c4.5">Код приложения на GitHub ↗</a></div></article>
-<article class="work" id="studio" tabindex="-1"><p class="status">В разработке</p><div><h3>Приложение для студий 3D-печати</h3><p>Разрабатываю приложение для автоматизации повседневной работы небольших студий трёхмерной печати.</p></div></article>
-<article class="work" id="games" tabindex="-1"><p class="status">Исследование в работе</p><div><h3>Что определяет популярность настольных игр?</h3><p>Изучаю, какие факторы связаны с популярностью настольных игр. Цель исследования — выявить эти факторы и спрогнозировать, как будет развиваться интерес к играм.</p></div></article>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f8f4e9"><meta name="description" content="Портфолио Олеси Потаповой: анализ данных, машинное обучение и прикладная разработка.">
+<title>Олеся Потапова · Портфолио</title>
+<link rel="stylesheet" href="studio.css"><script defer src="cats.js"></script>
+</head><body>
+<header><div class="wrap bar"><a class="brand" href="#top"><span aria-hidden="true">мяу_</span>Makinyan</a><nav aria-label="Навигация"><a href="#projects">Работы</a><a href="#skills">Навыки</a><a href="#about">Обо мне</a></nav><button id="motion" aria-label="Анимация котиков" aria-pressed="true" title="Включить или остановить движение котиков">Ⅱ</button></div></header>
+<main id="top">
+<section class="hero wrap">
+<div class="intro"><div class="eyebrow"><i></i> НГИЭУ / Системы искусственного интеллекта</div>
+<h1>Олеся<br>Потапов<span class="letter">а</span><span class="play" aria-hidden="true"><span class="period">.</span><canvas data-sprite="paw"></canvas></span></h1>
+<p>Анализирую данные, обучаю модели и пишу приложения. Ищу проекты, которые помогают людям и улучшают качество жизни.</p><a class="action" href="#projects">Смотреть работы <b aria-hidden="true">↓</b></a></div>
+<div class="desk"><div class="sheet-under"></div><div class="editor"><div class="titlebar"><span aria-hidden="true">● ● ●</span> profile.py</div><div class="editorbody"><canvas data-sprite="sit" class="codecat" aria-hidden="true"></canvas><pre><code><span class="violet">class</span> <span class="butter">Olesya</span>:
+    university = <span class="mint">"НГИЭУ"</span>
+    field = <span class="mint">"AI"</span>
+
+    <span class="violet">def</span> <span class="butter">interests</span>(self):
+        <span class="violet">return</span> [
+            <span class="mint">"данные"</span>,
+            <span class="mint">"модели"</span>,
+            <span class="mint">"рисование"</span>,
+        ]</code></pre></div></div><span class="paperclip" aria-hidden="true"></span></div>
+</section>
+<div class="promenade wrap" aria-hidden="true"><div class="wander"><canvas data-sprite="walk"></canvas></div></div>
+<section id="projects" class="wrap works"><div class="sectionhead"><h2>Мои работы<span>.</span></h2><span class="rule"></span></div>
+<div class="projectgrid">
+<article class="project ml"><div class="cover tree" aria-hidden="true"><svg viewBox="0 0 280 110"><g fill="none" stroke="#453554" stroke-width="3"><path d="M140 21V41H73V65M140 41H207V65M73 65V81H45V96M73 81H102V96"/></g><g fill="#fff3d5" stroke="#453554" stroke-width="2.5"><rect x="117" y="6" width="46" height="26" rx="4"/><circle cx="73" cy="65" r="10"/><rect x="193" y="55" width="28" height="19" rx="3"/><rect x="36" y="95" width="18" height="10"/><rect x="93" y="95" width="18" height="10"/></g></svg><canvas data-sprite="tux"></canvas></div><div class="pbody"><div class="eyebrow">Машинное обучение</div><h3>Дерево решений C4.5</h3><p>Разобрала метод C4.5, реализовала алгоритм построения дерева решений и оформила его в виде приложения.</p><a class="projectlink" href="https://github.com/Makinyan/decision-tree-c4.5">Код на GitHub ↗</a></div></article>
+<article class="project print"><div class="cover blueprint" aria-hidden="true"><svg viewBox="0 0 280 110"><g stroke="#d1f4e8" fill="none" stroke-width="2"><path d="m87 39 52-26 52 26-52 26z M87 39v40l52 26 52-26V39 M139 65v40 M87 49l52 26 52-26 M87 59l52 26 52-26 M87 69l52 26 52-26"/><path d="M52 88h21m-10-10v20M211 24h18m-9-9v18"/></g></svg><canvas data-sprite="ears"></canvas></div><div class="pbody"><div class="eyebrow">Прикладная разработка</div><h3>Студия 3D-печати</h3><p>Разрабатываю приложение, которое помогает небольшим студиям трёхмерной печати автоматизировать повседневную работу.</p><span class="status">В разработке</span></div></article>
+<article class="project games"><div class="cover gameboard" aria-hidden="true"><span class="die one">⚂</span><span class="die two">⚄</span><canvas data-sprite="paw"></canvas></div><div class="pbody"><div class="eyebrow">Анализ данных</div><h3>Почему настолки становятся популярными?</h3><p>Изучаю факторы, связанные с популярностью настольных игр, чтобы спрогнозировать, как будет меняться интерес к ним.</p><span class="status">Исследование в работе</span></div></article>
 </div></section>
-<section class="content" id="skills"><h2>Навыки и инструменты</h2><div class="skills">
-<div><h3>Аналитика и данные</h3><p>Python, pandas и NumPy. Сбор, обработка и интерпретация данных, работа с большими данными, проектирование схем баз данных. SQL, SQLite, CSV, Excel и JSON.</p></div>
-<div><h3>Машинное обучение и компьютерное зрение</h3><p>Готовлю и проверяю разметку, обучаю модели и оцениваю их качество. Работаю с PyTorch (CUDA), Ultralytics YOLO и OpenCV.</p></div>
-<div><h3>Интеллектуальные системы</h3><p>Глубокое обучение, обработка естественного языка и интеллектуальный анализ текста, рекомендательные системы, поддержка принятия решений, обучение с подкреплением и прикладная оптимизация.</p></div>
-<div><h3>Инженерная практика</h3><p>Разработка и тестирование приложений, Git, GitHub и VS Code. Знакома с MLOps, принципами DevOps и DataOps, основами сетей, телекоммуникаций, архитектуры ЭВМ и управления ИТ-проектами.</p></div>
-</div></section>
-<section class="content" id="about"><h2>Обо мне</h2><div class="about"><p>Учусь в НГИЭУ по направлению «Системы искусственного интеллекта» и участвую в научно-исследовательских и опытно-конструкторских разработках. Сейчас набираюсь практического опыта и пробую новые направления.</p><p>Вне учёбы рисую. Мне интересно, как композиция и выразительные средства меняют восприятие одного и того же образа. А ещё я знакома с прокрастинацией: иногда переключаюсь на менее важные дела и учусь замечать этот момент, чтобы вернуться к главному.</p></div></section></main>
-<footer><div class="wrap"><span>Олеся Потапова</span><a href="https://github.com/Makinyan">GitHub · Makinyan ↗</a></div></footer>
-<script>
-const cats = [
-  {name:'Персик', caption:'Утро на кухне', alt:'Рыжий полосатый кот на кухне рядом с чашкой, в окно светит солнце.', world:'kitchen', fur:'#ef9850', shade:'#bb563a', light:'#ffd78e', nose:'#a73960', eye:'#3d2944'},
-  {name:'Полночь', caption:'Луна над крышами', alt:'Чёрный кот на черепичной крыше под большой луной.', world:'roof', fur:'#393755', shade:'#24213e', light:'#6a678d', nose:'#dc84ae', eye:'#fbe79a'},
-  {name:'Плюшка', caption:'Полевые цветы', alt:'Трёхцветная кошка среди полевых цветов на фоне зелёных холмов.', world:'field', fur:'#fff0d8', shade:'#d3aab0', light:'#fffcf1', nose:'#c46c86', eye:'#304936'},
-  {name:'Туман', caption:'Дождь за окном', alt:'Серый полосатый кот на подоконнике за дождевыми струями и рядом с растением.', world:'rain', fur:'#a0a2bd', shade:'#676985', light:'#d2d5e0', nose:'#a45b81', eye:'#392b4c'},
-  {name:'Снежок', caption:'Зимний лес', alt:'Белый пушистый кот в синем шарфе сидит на снегу среди елей.', world:'snow', fur:'#fbf6f8', shade:'#bac6e4', light:'#ffffff', nose:'#bc739a', eye:'#35395d'},
-  {name:'Тоффи', caption:'Закат у моря', alt:'Кремовый кот с тёмными ушами смотрит на берег моря на закате.', world:'beach', fur:'#e9bc93', shade:'#84546a', light:'#ffdfad', nose:'#954d71', eye:'#38294b'}
-];
-
-function scene(canvas, cat) {
-  const context = canvas.getContext('2d');
-  const rect = (x,y,w,h,color) => { context.fillStyle = color; context.fillRect(x,y,w,h); };
-  const poly = (points,color) => {
-    context.fillStyle = color;
-    context.beginPath();
-    points.forEach(([x,y], i) => i ? context.lineTo(x,y) : context.moveTo(x,y));
-    context.closePath();
-    context.fill();
-  };
-  const disk = (x,y,r,color) => {
-    for (let dy = -r; dy <= r; dy++) {
-      const span = Math.floor(Math.sqrt(r*r-dy*dy));
-      rect(x-span,y+dy,span*2+1,1,color);
-    }
-  };
-  const cloud = (x,y,color) => {
-    rect(x+4,y,10,2,color); rect(x+2,y+2,16,2,color); rect(x,y+4,22,2,color);
-  };
-  const fir = (x,y,size,color) => {
-    for (let i=0;i<3;i++) {
-      const half = size - 4 + i*2;
-      for (let row=0;row<half;row++) rect(x-row,y+i*4+row,2*row+1,1,color);
-    }
-  };
-  const star = (x,y,color) => { rect(x,y-2,1,5,color); rect(x-2,y,5,1,color); };
-  const flower = (x,y,color) => {
-    rect(x,y,1,5,'#407f62'); rect(x+1,y+2,2,1,'#407f62');
-    rect(x-2,y-2,5,2,color); rect(x-1,y-3,3,4,color); rect(x,y-2,1,2,'#fff2a6');
-  };
-  const bands = (colors, start, height) => colors.forEach((color,i)=>rect(0,start+i*height,96,height,color));
-  let shadow;
-  switch (cat.world) {
-    case 'kitchen':
-      rect(0,0,96,62,'#f8cdb4'); rect(0,0,96,5,'#f3baa3');
-      rect(7,6,28,33,'#b86975'); rect(9,8,24,28,'#97d2db'); disk(17,16,5,'#fff0ac');
-      cloud(10,21,'#f0f8e8'); rect(21,8,2,28,'#fff0d2'); rect(9,21,24,2,'#fff0d2');
-      rect(5,38,32,3,'#fff0d2'); rect(60,11,27,2,'#e89488'); rect(63,13,2,11,'#e89488'); rect(82,13,2,11,'#e89488');
-      rect(65,5,6,6,'#c06f82'); rect(73,7,4,4,'#8daf8d');
-      rect(0,49,96,13,'#e79a71'); rect(0,49,96,2,'#a75761'); rect(0,56,96,1,'#f6b489');
-      rect(71,40,9,10,'#a75770'); rect(72,41,7,7,'#ffe8c9'); rect(80,42,3,5,'#a75770'); rect(81,43,1,3,'#f8cdb4');
-      rect(75,36,1,3,'#fff0d2'); rect(77,33,1,3,'#fff0d2'); shadow='#c27667';
-      break;
-    case 'roof':
-      bands(['#262345','#322952','#45305d','#59416d','#704d7c'],0,13);
-      disk(72,17,11,'#fbe0ae'); disk(76,14,9,'#322952'); rect(72,9,5,3,'#322952');
-      [[12,11],[30,17],[41,7],[86,29],[17,26]].forEach(([x,y])=>star(x,y,'#e0a9ce'));
-      for(let x=0;x<96;x+=8) {
-        const y=33+(x*7%13);
-        rect(x,y,7,18,'#332845'); rect(x+2,y+3,2,3,'#c687a3');
-      }
-      poly([[0,51],[39,47],[96,44],[96,62],[0,62]],'#56394f');
-      for(let y=51;y<62;y+=4) for(let x=(y%3)*3;x<96;x+=9) rect(x,y,7,1,'#8a5775');
-      shadow='#372740';
-      break;
-    case 'field':
-      bands(['#b9ded0','#cce6cb','#deebc4','#c6dd96'],0,16);
-      cloud(4,8,'#edf1d9'); cloud(64,15,'#edf1d9'); disk(78,10,6,'#faefad');
-      poly([[0,36],[15,26],[32,31],[54,37],[77,24],[96,30],[96,58],[0,58]],'#8bb78f');
-      poly([[0,42],[24,41],[42,34],[68,40],[96,34],[96,62],[0,62]],'#a4c77e');
-      rect(0,53,96,9,'#93bb70');
-      [[8,50],[18,55],[26,44],[68,49],[80,55],[90,45],[4,58]].forEach(([x,y],i)=>flower(x,y,['#f6c5c3','#fbea96','#e9d6f0'][i%3]));
-      shadow='#75a46c';
-      break;
-    case 'rain':
-      rect(0,0,96,62,'#a9abc9'); rect(9,4,78,42,'#666a96'); rect(12,6,72,38,'#7c86aa');
-      for(let x=12;x<84;x+=7) rect(x,28+(x%6),6,21,'#687595');
-      for(let x=13;x<80;x+=6) for(let y=8+(x%6);y<45;y+=12) {
-        for(let step=0;step<4;step++) rect(x-step,y+step,1,1,'#b7c3da');
-      }
-      rect(46,5,3,40,'#cccbe0'); rect(12,24,72,2,'#cccbe0');
-      rect(0,48,96,14,'#a38dab'); rect(0,48,96,3,'#e6c8d5'); rect(0,56,96,1,'#b9a1bb');
-      rect(72,37,9,11,'#d691a5'); rect(71,36,11,2,'#f0b0b8'); rect(77,28,1,8,'#436e65');
-      rect(73,29,5,3,'#587e6d'); rect(78,25,5,4,'#739682'); shadow='#766b8f';
-      break;
-    case 'snow':
-      bands(['#889bc8','#a6b6d7','#bccae2','#dce7f0'],0,16);
-      disk(75,13,8,'#f7e5e7');
-      [[9,38,12],[20,36,9],[82,37,12],[93,42,10]].forEach(([x,y,s])=>{fir(x,y-17,s,'#6785a9'); fir(x,y-15,s-3,'#b5cbe0');});
-      poly([[0,48],[24,45],[57,50],[96,44],[96,62],[0,62]],'#ecf0f7');
-      [[5,9],[24,19],[37,10],[57,14],[64,27],[90,13],[13,22],[85,33],[32,30]].forEach(([x,y])=>rect(x,y,1,1,'#fff9f9'));
-      rect(12,54,12,1,'#d2ddef'); rect(70,55,9,1,'#d2ddef'); shadow='#b1c3df';
-      break;
-    case 'beach':
-      bands(['#ae7ba1','#d58c9e','#f3a799','#f7bf99'],0,9);
-      disk(72,26,11,'#ffdfa2'); rect(0,35,96,13,'#987ca3');
-      rect(0,41,96,7,'#b38ba4'); rect(0,47,96,15,'#e7af99');
-      [[6,37,15],[26,40,13],[62,37,22],[71,40,12],[60,43,16],[4,45,18],[83,44,11]].forEach(([x,y,w])=>rect(x,y,w,1,'#f5c5b4'));
-      rect(8,54,12,1,'#f5d2ac'); rect(73,51,9,1,'#f5d2ac');
-      rect(77,55,4,2,'#bd7787'); rect(78,54,2,1,'#ffdeae'); shadow='#b77f87';
-  }
-  const outline = '#352943';
-  // A few offset rows create stepped silhouettes at the native pixel resolution.
-  const stepped = (x,y,w,h,color) => {
-    rect(x+2,y,w-4,1,color); rect(x+1,y+1,w-2,1,color);
-    rect(x,y+2,w,h-4,color); rect(x+1,y+h-2,w-2,1,color); rect(x+2,y+h-1,w-4,1,color);
-  };
-  stepped(28,50,41,6,shadow);
-  const mirror = cat.world==='rain' || cat.world==='beach';
-  const pixel = (x,y,w,h,color) => rect(mirror ? 96-x-w : x,y,w,h,color);
-  const shape = (x,y,w,h,color) => stepped(mirror ? 96-x-w : x,y,w,h,color);
-  const fluffy = cat.world==='snow';
-  const tall = cat.world==='roof';
-  const bodyTop = tall ? 32 : 35;
-  const earTop = tall ? 18 : 21;
-
-  shape(45,bodyTop,fluffy ? 17 : 15,53-bodyTop,outline);
-  shape(47,bodyTop+2,fluffy ? 13 : 11,51-bodyTop,cat.fur);
-  pixel(60,46,6,7,outline); pixel(65,42,5,9,outline); pixel(66,40,4,4,outline);
-  pixel(60,48,5,3,cat.shade); pixel(64,46,4,3,cat.fur); pixel(67,42,1,5,cat.shade);
-  shape(36,45,13,9,outline); shape(38,46,9,6,cat.fur);
-  shape(49,47,10,7,outline); shape(50,48,8,4,cat.shade);
-  pixel(34,earTop,4,12,outline); pixel(38,earTop+3,3,9,outline);
-  pixel(53,earTop+3,3,9,outline); pixel(56,earTop,4,12,outline);
-  shape(33,earTop+8,28,20,outline);
-  shape(35,earTop+10,24,16,cat.fur);
-  pixel(36,earTop+2,2,11,cat.world==='beach' ? cat.shade : cat.fur);
-  pixel(38,earTop+5,2,6,cat.fur);
-  pixel(56,earTop+2,2,11,cat.world==='beach' ? cat.shade : cat.fur);
-  pixel(54,earTop+5,2,6,cat.fur);
-  pixel(36,earTop+5,1,4,cat.nose); pixel(57,earTop+5,1,4,cat.nose);
-  if(cat.world==='kitchen' || cat.world==='rain'){
-    for(let i=0;i<3;i++) pixel(42+i*4,earTop+10,2,i===1 ? 4 : 3,cat.shade);
-    pixel(35,earTop+16,3,1,cat.shade); pixel(56,earTop+16,3,1,cat.shade);
-  }
-  if(cat.world==='field'){
-    shape(36,earTop+10,9,11,'#c97753'); shape(51,earTop+10,8,11,'#625064');
-    pixel(50,45,6,2,'#c97753'); pixel(54,47,3,2,'#625064');
-  }
-  if(cat.world==='beach'){
-    shape(44,earTop+15,7,8,cat.shade); pixel(36,earTop+11,3,2,cat.shade); pixel(55,earTop+11,3,2,cat.shade);
-  }
-  pixel(40,earTop+17,3,4,cat.eye); pixel(52,earTop+17,3,4,cat.eye);
-  pixel(40,earTop+17,1,1,cat.light); pixel(52,earTop+17,1,1,cat.light);
-  if(cat.world!=='beach') shape(43,earTop+20,9,6,cat.light);
-  pixel(46,earTop+21,3,2,cat.nose); pixel(47,earTop+23,1,1,outline);
-  pixel(37,earTop+22,4,1,cat.light); pixel(54,earTop+22,4,1,cat.light);
-  pixel(40,51,1,1,cat.shade); pixel(44,51,1,1,cat.shade);
-  if(fluffy){
-    pixel(39,47,18,2,'#5777ab'); pixel(41,49,15,2,'#7598c7'); pixel(52,50,4,5,'#5777ab');
-  }
-}
-
-
-document.querySelectorAll('canvas[data-cat]').forEach(canvas => scene(canvas, cats[Number(canvas.dataset.cat)]));
-function markDirection(){
-  document.querySelectorAll('.path').forEach(link => {
-    const active = link.hash === location.hash;
-    link.classList.toggle('active', active);
-    if(active) link.setAttribute('aria-current','location');
-    else link.removeAttribute('aria-current');
-  });
-}
-window.addEventListener('hashchange', markDirection);
-markDirection();
-</script>
-</body></html>
+<section id="skills" class="toolbox"><div class="wrap"><div class="sectionhead"><h2>Чем я владею<span>.</span></h2><span class="rule"></span></div><div class="skillgrid">
+<div><h3>Данные и аналитика</h3><p>Сбор, обработка и интерпретация больших данных. Проектирование схем баз данных.</p><div class="tags">Python · pandas · NumPy<br>SQL · SQLite · CSV · Excel · JSON</div></div>
+<div><h3>Модели и зрение</h3><p>Подготовка и проверка разметки, обучение моделей и оценка качества. Машинное и глубокое обучение.</p><div class="tags">PyTorch (CUDA) · YOLO · OpenCV</div></div>
+<div><h3>Интеллектуальные системы</h3><p>Обработка естественного языка, анализ текста, рекомендации и поддержка принятия решений. Обучение с подкреплением и оптимизация.</p></div>
+<div class="engineer"><h3>Инженерная практика</h3><p>Разработка и тестирование ПО, основы сетей и архитектуры ЭВМ, управление ИТ-проектами.</p><div class="tags">Git · GitHub · VS Code<br>MLOps · DevOps · DataOps</div><canvas data-sprite="tail" aria-hidden="true"></canvas></div></div></div></section>
+<section id="about" class="wrap about"><div class="note"><div class="tape"></div><h2>За пределами <em>кода</em></h2><canvas data-sprite="sleep" aria-hidden="true"></canvas></div><div class="bio"><h3>Немного обо мне</h3><p>Учусь в НГИЭУ по направлению «Системы искусственного интеллекта», участвую в НИОКР и набираюсь практического опыта.</p><p>Рисую: люблю наблюдать, как композиция меняет восприятие образа. Иногда увлекаюсь менее срочными делами — учусь замечать прокрастинацию и возвращаться к главному.</p></div></section>
+</main><footer><div class="wrap"><span>Олеся Потапова</span><a href="https://github.com/Makinyan">GitHub · Makinyan ↗</a></div></footer></body></html>

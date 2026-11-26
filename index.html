@@ -2,65 +2,38 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f7f3ec">
-<title>Котопиксели — галерея пиксельных котов</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#202b26">
+<meta name="description" content="Портфолио Олеси Потаповой, студентки НГИЭУ. Анализ данных, машинное обучение и прикладная разработка.">
+<title>Олеся Потапова — данные и искусственный интеллект</title>
 <style>
-  :root { color-scheme: light; --paper: #f7f3ec; --ink: #25203b; --muted: #60586e; --line: #dcd4e0; --accent: #572c92; }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.5 system-ui, sans-serif; }
-  .wrap { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
-  header { padding: 24px 0; border-bottom: 1px solid var(--line); }
-  header .wrap, footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-  .brand { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 850; letter-spacing: -.03em; }
-  .brand svg { width: 29px; height: 29px; flex: none; }
-  a { color: var(--accent); text-underline-offset: .23em; }
-  .intro { padding: 68px 0 42px; }
-  h1, h2, p { margin: 0; }
-  .intro h1 { font-size: clamp(2.65rem, 8vw, 6.5rem); line-height: 1; letter-spacing: -.075em; }
-  .intro p { margin-top: 18px; color: var(--muted); font-size: clamp(1rem, 2vw, 1.25rem); }
-  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 23px; padding-bottom: 64px; }
-  .card { display: block; width: 100%; text-align: left; padding: 0; border: 1px solid var(--line); border-radius: 15px; overflow: hidden; background: #fffcf8; color: inherit; font: inherit; cursor: pointer; box-shadow: 0 2px 0 #25203b0e; transition: transform .18s, box-shadow .18s, border-color .18s; }
-  .card:hover { transform: translateY(-4px); box-shadow: 0 8px 18px #25203b22; border-color: #a18ab7; }
-  :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
-  canvas { display: block; width: 100%; height: auto; aspect-ratio: 96 / 62; image-rendering: pixelated; }
-  .words { display: block; padding: 15px 18px 18px; }
-  .name { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 1.23rem; font-weight: 830; letter-spacing: -.025em; }
-  .open { color: var(--accent); font-size: 1.1rem; }
-  .caption { display: block; margin-top: 3px; color: var(--muted); font-size: .91rem; }
-  footer { border-top: 1px solid var(--line); color: var(--muted); padding: 21px 0; font-size: .9rem; }
-  dialog { width: min(720px, calc(100% - 32px)); max-height: calc(100dvh - 32px); padding: 0; overflow: auto; border: 1px solid var(--line); border-radius: 16px; background: #fffcf8; color: var(--ink); }
-  dialog::backdrop { background: #211831ca; }
-  .dialog-top, .dialog-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 18px; }
-  .dialog-top h2 { font-size: 1.3rem; }
-  .dialog-bottom p { color: var(--muted); }
-  .dialog-controls { display: flex; gap: 7px; flex-shrink: 0; }
-  .control { min-width: 40px; min-height: 40px; padding: 4px 9px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); cursor: pointer; font: 700 1.2rem/1 system-ui, sans-serif; }
-  .control:hover { background: #eee2f6; }
-  @media (max-width: 850px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 520px) { .wrap { width: calc(100% - 32px); } .intro { padding: 46px 0 27px; } .grid { grid-template-columns: 1fr; gap: 16px; padding-bottom: 40px; } }
-  @media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:#f7f6ef;color:#202b26;font:17px/1.55 "Segoe UI",Arial,sans-serif}.wrap{width:min(1110px,calc(100% - 48px));margin:auto}
+header{background:#202b26;color:white}.bar,nav,.actions{display:flex;align-items:center;gap:24px}.bar{min-height:64px;justify-content:space-between}.brand{font-weight:700;letter-spacing:.03em}a{color:inherit;text-underline-offset:.22em}nav a,.brand,.actions a,.path{text-decoration:none}nav a:hover,.brand:hover{text-decoration:underline}.hero{display:grid;grid-template-columns:1.25fr .85fr;gap:6%;align-items:center;padding:64px 0}.kicker,.status,.micro{font:700 .77rem/1.4 Consolas,monospace;letter-spacing:.075em;text-transform:uppercase;color:#3d6453}h1,h2,h3,p{margin:0}h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:normal;letter-spacing:-.05em;line-height:1.04}h1{font-size:clamp(52px,6vw,88px);margin:14px 0 18px}h2{font-size:clamp(35px,4vw,54px);margin-bottom:22px}.lead{max-width:58ch}.actions{margin-top:24px;gap:18px;flex-wrap:wrap}.actions a:first-child{background:#263c31;color:#fff;padding:11px 19px;border-radius:5px}.actions a:last-child{text-decoration:underline}figure{margin:0}canvas{display:block;width:100%;height:auto;image-rendering:pixelated}.hero figure{background:#e5e0ee;border:1px solid #25382e;box-shadow:6px 6px 0 #bcc6af}.hero figcaption{padding:10px 14px;color:#292538;font-family:Consolas,monospace;font-size:.85rem}
+section.content{border-top:1px solid #aeb9a8;padding:42px 0 50px}.paths{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.path{display:grid;grid-template-columns:84px 1fr;align-items:center;gap:14px;background:#fffef8;border:1px solid #bcc5b6;border-radius:6px;padding:12px;color:#253b2e;transition:background .18s}.path:hover,.path.active{background:#dcebcf;border-color:#445e47}.path small{display:block;font-size:14px;color:#4b5950}.path strong{display:block;line-height:1.25}.path canvas{border-radius:3px}.projects{margin-top:26px;border-top:1px solid #bcc5b6}.work{display:grid;grid-template-columns:210px 1fr;gap:25px;padding:26px 16px;border-bottom:1px solid #bcc5b6;scroll-margin-top:16px}.work:target{background:#e8efdF;box-shadow:inset 4px 0 #41694e}.work h3{font-size:1.3rem;line-height:1.25;margin-bottom:8px}.work p{max-width:68ch}.work a{display:inline-block;margin-top:9px;font-weight:600}.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:24px 44px}.skills h3{font-size:1rem;margin-bottom:4px}.about{max-width:73ch}.about p+p{margin-top:12px}footer{padding:22px 0;background:#202b26;color:white}footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}:focus-visible{outline:3px solid #bf5327;outline-offset:4px}
+@media(max-width:850px){.path{grid-template-columns:1fr}.path canvas{width:90px}.hero{gap:24px}}@media(max-width:630px){.wrap{width:calc(100% - 32px)}.bar{align-items:flex-start;flex-direction:column;gap:6px;padding:12px 0}nav{gap:16px;font-size:15px}.hero{grid-template-columns:1fr;padding:34px 0;gap:24px}.hero figure{max-width:380px}.paths,.skills,.work{grid-template-columns:1fr}.path{grid-template-columns:76px 1fr}.path canvas{width:76px}.work{gap:8px;padding:20px 12px}.paths{gap:8px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head>
-<body id="top">
-<header><div class="wrap">
-  <div class="brand"><svg viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges"><path fill="#572c92" d="M1 2h3v2h2v2h4V4h2V2h3v10h-2v2H3v-2H1z"/><path fill="#fff0fa" d="M4 8h2v2H4zm6 0h2v2h-2zm-3 3h2v1H7z"/></svg>Котопиксели</div>
-  <a href="#gallery">Галерея</a>
-</div></header>
-<main class="wrap">
-  <section class="intro" aria-labelledby="heading"><h1 id="heading">Котопиксели</h1><p>Шесть котов в шести маленьких мирах.</p></section>
-  <section class="grid" id="gallery" aria-label="Галерея пиксельных котов"></section>
-  <noscript><p>Для просмотра иллюстраций включите JavaScript.</p></noscript>
-</main>
-<footer><div class="wrap"><span>Котопиксели</span><a href="#top">Наверх ↑</a></div></footer>
-<dialog aria-labelledby="dialog-title" aria-describedby="dialog-caption">
-  <div class="dialog-top"><h2 id="dialog-title"></h2><button class="control" id="close" type="button" aria-label="Закрыть" autofocus>×</button></div>
-  <canvas id="preview" width="96" height="62" role="img"></canvas>
-  <div class="dialog-bottom"><p id="dialog-caption"></p><div class="dialog-controls">
-    <button class="control" id="previous" type="button" aria-label="Предыдущий кот">←</button>
-    <button class="control" id="next" type="button" aria-label="Следующий кот">→</button>
-  </div></div>
-</dialog>
+<body>
+<header><div class="wrap bar"><a class="brand" href="#top">Олеся Потапова</a><nav aria-label="Разделы сайта"><a href="#projects">Проекты</a><a href="#skills">Навыки</a><a href="#about">Обо мне</a></nav></div></header>
+<main class="wrap" id="top">
+<section class="hero"><div><p class="kicker">НГИЭУ · Системы искусственного интеллекта</p><h1>Олеся Потапова</h1><p class="lead">Я студентка НГИЭУ. Анализирую данные, обучаю модели машинного обучения и разрабатываю приложения. Хочу участвовать в проектах, которые помогают людям и улучшают качество жизни.</p><div class="actions"><a href="#projects">Посмотреть работы</a><a href="https://github.com/Makinyan">Мой GitHub ↗</a></div></div><figure><canvas data-cat="1" width="96" height="62" role="img" aria-label="Пиксельный чёрный кот сидит на крыше под луной"></canvas><figcaption>Полночь на крыше</figcaption></figure></section>
+<section class="content" id="projects"><h2>Проекты</h2><div class="paths" aria-label="Перейти к проекту по направлению">
+<a class="path" href="#models"><canvas data-cat="0" width="96" height="62" aria-hidden="true"></canvas><span><strong>Машинное обучение</strong><small>Персик · дерево решений</small></span></a>
+<a class="path" href="#studio"><canvas data-cat="3" width="96" height="62" aria-hidden="true"></canvas><span><strong>Разработка</strong><small>Туман · студия 3D-печати</small></span></a>
+<a class="path" href="#games"><canvas data-cat="2" width="96" height="62" aria-hidden="true"></canvas><span><strong>Анализ данных</strong><small>Плюшка · настольные игры</small></span></a></div>
+<div class="projects">
+<article class="work" id="models" tabindex="-1"><p class="status">Реализовано</p><div><h3>Дерево решений C4.5</h3><p>Разобрала метод C4.5, реализовала алгоритм построения дерева решений и оформила его в виде приложения.</p><a href="https://github.com/Makinyan/decision-tree-c4.5">Код приложения на GitHub ↗</a></div></article>
+<article class="work" id="studio" tabindex="-1"><p class="status">В разработке</p><div><h3>Приложение для студий 3D-печати</h3><p>Разрабатываю приложение для автоматизации повседневной работы небольших студий трёхмерной печати.</p></div></article>
+<article class="work" id="games" tabindex="-1"><p class="status">Исследование в работе</p><div><h3>Что определяет популярность настольных игр?</h3><p>Изучаю, какие факторы связаны с популярностью настольных игр. Цель исследования — выявить эти факторы и спрогнозировать, как будет развиваться интерес к играм.</p></div></article>
+</div></section>
+<section class="content" id="skills"><h2>Навыки и инструменты</h2><div class="skills">
+<div><h3>Аналитика и данные</h3><p>Python, pandas и NumPy. Сбор, обработка и интерпретация данных, работа с большими данными, проектирование схем баз данных. SQL, SQLite, CSV, Excel и JSON.</p></div>
+<div><h3>Машинное обучение и компьютерное зрение</h3><p>Готовлю и проверяю разметку, обучаю модели и оцениваю их качество. Работаю с PyTorch (CUDA), Ultralytics YOLO и OpenCV.</p></div>
+<div><h3>Интеллектуальные системы</h3><p>Глубокое обучение, обработка естественного языка и интеллектуальный анализ текста, рекомендательные системы, поддержка принятия решений, обучение с подкреплением и прикладная оптимизация.</p></div>
+<div><h3>Инженерная практика</h3><p>Разработка и тестирование приложений, Git, GitHub и VS Code. Знакома с MLOps, принципами DevOps и DataOps, основами сетей, телекоммуникаций, архитектуры ЭВМ и управления ИТ-проектами.</p></div>
+</div></section>
+<section class="content" id="about"><h2>Обо мне</h2><div class="about"><p>Учусь в НГИЭУ по направлению «Системы искусственного интеллекта» и участвую в научно-исследовательских и опытно-конструкторских разработках. Сейчас набираюсь практического опыта и пробую новые направления.</p><p>Вне учёбы рисую. Мне интересно, как композиция и выразительные средства меняют восприятие одного и того же образа. А ещё я знакома с прокрастинацией: иногда переключаюсь на менее важные дела и учусь замечать этот момент, чтобы вернуться к главному.</p></div></section></main>
+<footer><div class="wrap"><span>Олеся Потапова</span><a href="https://github.com/Makinyan">GitHub · Makinyan ↗</a></div></footer>
 <script>
 const cats = [
   {name:'Персик', caption:'Утро на кухне', alt:'Рыжий полосатый кот на кухне рядом с чашкой, в окно светит солнце.', world:'kitchen', fur:'#ef9850', shade:'#bb563a', light:'#ffd78e', nose:'#a73960', eye:'#3d2944'},
@@ -214,45 +187,17 @@ function scene(canvas, cat) {
   }
 }
 
-const gallery = document.querySelector('#gallery');
-const dialog = document.querySelector('dialog');
-const preview = document.querySelector('#preview');
-let current = 0;
-let opener;
-function show(index) {
-  current = (index + cats.length) % cats.length;
-  const cat = cats[current];
-  document.querySelector('#dialog-title').textContent = cat.name;
-  document.querySelector('#dialog-caption').textContent = cat.caption;
-  preview.setAttribute('aria-label', cat.alt);
-  scene(preview,cat);
-}
-cats.forEach((cat,index)=>{
-  const card = document.createElement('button');
-  card.type = 'button';
-  card.className = 'card';
-  card.setAttribute('aria-haspopup','dialog');
-  card.innerHTML = '<canvas width="96" height="62" aria-hidden="true"></canvas><span class="words"><span class="name"><span></span><span class="open" aria-hidden="true">↗</span></span><span class="caption"></span></span>';
-  card.querySelector('.name span').textContent = cat.name;
-  card.querySelector('.caption').textContent = cat.caption;
-  scene(card.querySelector('canvas'),cat);
-  card.addEventListener('click',()=>{
-    opener = card;
-    show(index);
-    dialog.showModal();
+
+document.querySelectorAll('canvas[data-cat]').forEach(canvas => scene(canvas, cats[Number(canvas.dataset.cat)]));
+function markDirection(){
+  document.querySelectorAll('.path').forEach(link => {
+    const active = link.hash === location.hash;
+    link.classList.toggle('active', active);
+    if(active) link.setAttribute('aria-current','location');
+    else link.removeAttribute('aria-current');
   });
-  gallery.append(card);
-});
-document.querySelector('#close').addEventListener('click',()=>dialog.close());
-document.querySelector('#previous').addEventListener('click',()=>show(current-1));
-document.querySelector('#next').addEventListener('click',()=>show(current+1));
-dialog.addEventListener('close',()=>opener?.focus());
-dialog.addEventListener('keydown',(event)=>{
-  if(event.key==='ArrowLeft' || event.key==='ArrowRight'){
-    event.preventDefault();
-    show(current+(event.key==='ArrowRight' ? 1 : -1));
-  }
-});
+}
+window.addEventListener('hashchange', markDirection);
+markDirection();
 </script>
-</body>
-</html>
+</body></html>
